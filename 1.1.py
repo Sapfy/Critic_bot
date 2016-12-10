@@ -5,7 +5,7 @@ import config
 bot = telebot.TeleBot(config.token)
 
 
-Слышь
+Слышь бля
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
