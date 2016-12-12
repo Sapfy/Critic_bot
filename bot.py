@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import telebot
 import config
-import random
-from config import database_name
-from SQL_bd import SQL_bd
+
 
 bot = telebot.TeleBot(config.token)
-db = SQL_bd(database_name)
+
 
 
 #   добавим пользовательскую клавиатуру

@@ -1,17 +1,22 @@
 import pypyodbc
 
-mySQLServer = ""
-myDatabase = ""
+mySQLServer = "LAPTOP-0N1QACJF\SQLSAPFY"
+myDatabase = "test1"
 
-connection = pypyodbc.connect('Driver(SQL Server);'
-                              'Server=' + mySQLServer +';'
-                              'Database=' + myDatabase +';'
-                              'uid=;'
-                              'pwd=;')
+connection = pypyodbc.connect('Driver={SQL Server};'
+                              'Server=' + mySQLServer + ';'
+                              'Database=' + myDatabase + ';')
 #   добавляем курсор
-curson = connection.cursor()
+cursor = connection.cursor()
 
-mySQLQuery = ('''
-                SELECT (какие выгребаются столбики через запятую вот)
-                FROM (откуда вытаскиваем(таблица называется))
-                ''')
+mySQLQuery = ("""
+                SELECT tell
+                FROM bla1
+                """)
+
+cursor.execute(mySQLQuery)
+resul = cursor.fetchall()
+
+print(resul)
+
+connection.close()
