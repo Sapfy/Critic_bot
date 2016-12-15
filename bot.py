@@ -2,12 +2,10 @@
 import telebot
 import config
 import os
-import SQL_bd
+import sqlite3 as lite
 
 #   подключаем библиотеки
 bot = telebot.TeleBot(config.token)
-
-
 
 #   добавим пользовательскую клавиатуру
 @bot.message_handler(commands=['start'])
@@ -21,19 +19,42 @@ def handle_start(message):
                      reply_markup=user_markup)
 
 
-
-
-
 @bot.message_handler(commands=['stop'])
 def handle_start(message):
     hide_markup = telebot.types.ReplyKeyboardMarkup()
     bot.send_message(message.from_user.id, 'Приходи еще', reply_markup=hide_markup)
 
 @bot.message_handler(content_types=['photo'])
-def handle_text(message):
-    bot.send_message(message.chat.id, SQL_bd)
+def handle_photo(message):
+    conn = lite.connect('BD.db')
 
+    c = conn.cursor()
 
+    c.execute('''SELECT bla1 FROM tell
+                  ORDER BY RANDOM()
+                  LIMIT 1''')
+
+    data = c.fetchone()
+    bot.send_message(message.chat.id, "%s" % data)
+
+    #   Закрываем текущее соединение с БД
+    conn.close()
+
+@bot.message_handler(content_types=['audio'])
+def handle_photo(message):
+    conn = lite.connect('BD.db')
+
+    c = conn.cursor()
+
+    c.execute('''SELECT bla2 FROM tell
+                  ORDER BY RANDOM()
+                  LIMIT 1''')
+
+    data = c.fetchone()
+    bot.send_message(message.chat.id, "%s" % data)
+
+    #   Закрываем текущее соединение с БД
+    conn.close()
 
 
 
@@ -51,14 +72,19 @@ def bla_pashal(message):
             bot.send_photo(message.from_user.id, img)
             img.close()
     else:
-        bot.send_message(message.chat.id, SQL_bd)
+        conn = lite.connect('BD.db')
 
+        c = conn.cursor()
 
+        c.execute('''SELECT bla3 FROM tell
+                         ORDER BY RANDOM()
+                         LIMIT 1''')
 
+        data = c.fetchone()
+        bot.send_message(message.chat.id, "%s" % data)
 
-
-
-
+        #   Закрываем текущее соединение с БД
+        conn.close()
 
 
 if __name__ == '__main__':

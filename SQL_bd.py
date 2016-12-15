@@ -1,14 +1,26 @@
-# -*- coding: utf-8 -*-
-import sqlite3
+import sqlite3 as lite
+import sys
 
-conn = sqlite3.connect('BD.db')
+con = None
 
-c = conn.cursor()
+try:
+    con = lite.connect('BD.db')
 
-c.execute('''SELECT bla1 FROM tell
+    cur = con.cursor()
+    cur.execute('''SELECT bla1 FROM tell
               ORDER BY RANDOM()
               LIMIT 1''')
 
+    data = cur.fetchone()
 
-#   Закрываем текущее соединение с БД
-conn.close()
+    print("%s" % data)
+
+except ValueError:
+
+    print("Error &s:" % e.args[0])
+    sys.exit(1)
+
+finally:
+
+    if con:
+        con.close()
