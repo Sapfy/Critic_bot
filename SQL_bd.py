@@ -1,22 +1,14 @@
-import pypyodbc
+# -*- coding: utf-8 -*-
+import sqlite3
 
-mySQLServer = "LAPTOP-0N1QACJF\SQLSAPFY"
-myDatabase = "test1"
+conn = sqlite3.connect('BD.db')
 
-connection = pypyodbc.connect('Driver={SQL Server};'
-                              'Server=' + mySQLServer + ';'
-                              'Database=' + myDatabase + ';')
-#   добавляем курсор
-cursor = connection.cursor()
+c = conn.cursor()
 
-mySQLQuery = ("""
-                SELECT tell
-                FROM bla1
-                """)
+c.execute('''SELECT bla1 FROM tell
+              ORDER BY RANDOM()
+              LIMIT 1''')
 
-cursor.execute(mySQLQuery)
-resul = cursor.fetchall()
 
-print(resul)
-
-connection.close()
+#   Закрываем текущее соединение с БД
+conn.close()
