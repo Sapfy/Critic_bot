@@ -3,6 +3,7 @@ import telebot
 import config
 import os
 import sqlite3 as lite
+import time
 
 #   подключаем библиотеки
 bot = telebot.TeleBot(config.token)
@@ -26,6 +27,8 @@ def handle_start(message):
 
 @bot.message_handler(content_types=['photo'])
 def handle_photo(message):
+    #   вставляем задержку
+    time.sleep(5)
     conn = lite.connect('BD.db')
 
     c = conn.cursor()
@@ -42,6 +45,8 @@ def handle_photo(message):
 
 @bot.message_handler(content_types=['audio'])
 def handle_photo(message):
+    #   вставляем задержку
+    time.sleep(5)
     conn = lite.connect('BD.db')
 
     c = conn.cursor()
@@ -72,6 +77,8 @@ def bla_pashal(message):
             bot.send_photo(message.from_user.id, img)
             img.close()
     else:
+        #   вставляем задержку
+        time.sleep(1)
         conn = lite.connect('BD.db')
 
         c = conn.cursor()
