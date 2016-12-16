@@ -27,7 +27,7 @@ def handle_start(message):
 
 @bot.message_handler(content_types=['photo'])
 def handle_photo(message):
-    #   вставляем задержку
+    #   вставляем задержку для аудио
     time.sleep(5)
     conn = lite.connect('BD.db')
 
@@ -45,7 +45,7 @@ def handle_photo(message):
 
 @bot.message_handler(content_types=['audio'])
 def handle_photo(message):
-    #   вставляем задержку
+    #   вставляем задержку для аудио
     time.sleep(5)
     conn = lite.connect('BD.db')
 
@@ -77,7 +77,7 @@ def bla_pashal(message):
             bot.send_photo(message.from_user.id, img)
             img.close()
     else:
-        #   вставляем задержку
+        #   вставляем задержку для текстового ответа
         time.sleep(1)
         conn = lite.connect('BD.db')
 
