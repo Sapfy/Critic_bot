@@ -67,7 +67,7 @@ def handle_photo(message):
 @bot.message_handler(content_types=['text'])
 def bla_pashal(message):
     if message.text == 'Мне грустно':
-        directory = 'C:/Users/mssap/PycharmProjects/Kritik_bot/photo'
+        directory = 'C:/Users/mssap/PycharmProjects/Kritik_bot/photo' # os.path.dirname()
         all_files_in_directory = os.listdir(directory)
         print(all_files_in_directory)
         for file in all_files_in_directory:
